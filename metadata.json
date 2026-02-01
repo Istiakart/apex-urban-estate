@@ -1,0 +1,7 @@
+{
+  "name": "Apex Urban Estates",
+  "description": "Premium luxury real estate agency providing expert local market knowledge and personalized white-glove service.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
