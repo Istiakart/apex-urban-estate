@@ -26,7 +26,7 @@ export interface SearchFilters {
   type: string;
 }
 
-// Added missing ChatMessage interface
+// Added ChatMessage interface to resolve import error in AIConsultant.tsx
 export interface ChatMessage {
   role: 'user' | 'model';
   content: string;

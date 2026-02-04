@@ -16,44 +16,43 @@ const MortgageCalculator: React.FC<{ initialPrice: number }> = ({ initialPrice }
   }, [price, downPayment, interestRate, years]);
 
   return (
-    <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-      <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-        Mortgage Calculator
+    <div className="bg-slate-50 p-8 rounded-sm border border-slate-200">
+      <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 border-l-4 border-[#c5a059] pl-6 text-[#0a1128]">
+        Investment Calculator
       </h3>
       
-      <div className="space-y-4">
+      <div className="space-y-8">
         <div>
-          <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Home Price (${price.toLocaleString()})</label>
+          <label className="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Portfolio Valuation (${price.toLocaleString()})</label>
           <input 
-            type="range" min="100000" max="10000000" step="50000" 
+            type="range" min="100000" max="30000000" step="50000" 
             value={price} onChange={(e) => setPrice(Number(e.target.value))}
-            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#c5a059]"
           />
         </div>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div>
-            <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Down Payment (%)</label>
+            <label className="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Down Capital (%)</label>
             <input 
               type="number" value={(downPayment / price * 100).toFixed(1)} 
               onChange={(e) => setDownPayment(price * (Number(e.target.value) / 100))}
-              className="w-full p-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full p-4 bg-white border border-slate-200 rounded-sm text-xs font-bold tracking-widest focus:border-[#c5a059] outline-none transition-colors"
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Interest Rate (%)</label>
+            <label className="block text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Interest Rate (%)</label>
             <input 
               type="number" step="0.1" value={interestRate} 
               onChange={(e) => setInterestRate(Number(e.target.value))}
-              className="w-full p-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full p-4 bg-white border border-slate-200 rounded-sm text-xs font-bold tracking-widest focus:border-[#c5a059] outline-none transition-colors"
             />
           </div>
         </div>
 
-        <div className="p-4 bg-blue-50 rounded-xl text-center">
-          <p className="text-xs font-medium text-blue-600 uppercase mb-1">Estimated Monthly Payment</p>
-          <p className="text-3xl font-bold text-blue-900">${Math.round(monthlyPayment).toLocaleString()}</p>
+        <div className="p-8 bg-[#0a1128] text-white rounded-sm text-center shadow-2xl">
+          <p className="text-[9px] font-black text-[#c5a059] uppercase tracking-[0.5em] mb-3">Estimated Monthly Offering</p>
+          <p className="text-4xl font-black tracking-tighter">${Math.round(monthlyPayment).toLocaleString()}</p>
         </div>
       </div>
     </div>

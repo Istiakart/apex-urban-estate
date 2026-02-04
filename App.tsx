@@ -1,8 +1,10 @@
+
 import React, { useState, useMemo, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PropertyModal from './components/PropertyModal';
+import ContactSection from './components/ContactSection';
 import { MOCK_PROPERTIES } from './constants';
 import { Property, SearchFilters } from './types';
 
@@ -51,7 +53,7 @@ const App: React.FC = () => {
   }, [filters]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
       <Navbar />
       
       {/* Hero Section */}
@@ -70,7 +72,7 @@ const App: React.FC = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-8xl font-black text-white leading-tight mb-12 tracking-[0.15em] uppercase">
+            <h1 className="text-5xl md:text-8xl font-black text-white leading-tight mb-12 tracking-[0.15em] uppercase text-shadow-lg">
               Curated Estates <br />
               <span className="text-[#c5a059]">For The Discerning.</span>
             </h1>
@@ -78,14 +80,13 @@ const App: React.FC = () => {
               Expert Local Market Knowledge. <br /> Personalized Brokerage Service.
             </p>
             
-            {/* Search Bar Container */}
             <div className="bg-white p-3 rounded-sm border border-amber-900/10 shadow-2xl max-w-3xl mx-auto">
               <div className="flex flex-col md:flex-row gap-3">
                 <div className="flex-1 relative">
                   <svg className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                   <input 
                     type="text" 
-                    placeholder="Search Portfolios..."
+                    placeholder="Search Global Portfolios..."
                     className="w-full pl-16 pr-8 py-6 bg-slate-50 rounded-sm text-slate-900 placeholder-slate-400 focus:outline-none text-xs font-black uppercase tracking-[0.4em] transition-all"
                     value={filters.query}
                     onChange={(e) => setFilters({...filters, query: e.target.value})}
@@ -103,11 +104,10 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         
-        {/* Filters Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-24 gap-10">
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h2 className="text-4xl font-black text-[#0a1128] tracking-[0.15em] uppercase mb-4">Exclusive Portfolio</h2>
-            <p className="text-[11px] font-bold text-[#c5a059] uppercase tracking-[0.6em]">Available Signature Residences</p>
+            <p className="text-[11px] font-bold text-[#c5a059] uppercase tracking-[0.6em]">Currently Available Signature Residences</p>
           </div>
           <button 
             onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)}
@@ -118,8 +118,8 @@ const App: React.FC = () => {
         </div>
 
         {/* Filters Panel */}
-        <div className={`${isFilterPanelOpen ? 'flex' : 'hidden lg:flex'} flex-col lg:flex-row gap-12 p-14 bg-white border border-slate-100 shadow-[0_60px_100px_-40px_rgba(0,0,0,0.15)] mb-32 lg:items-end`}>
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-14">
+        <div className={`${isFilterPanelOpen ? 'flex' : 'hidden lg:flex'} flex-col lg:flex-row gap-12 p-10 lg:p-14 bg-white border border-slate-100 shadow-[0_60px_100px_-40px_rgba(0,0,0,0.15)] mb-32 lg:items-end`}>
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-14">
             <div className="flex flex-col gap-6">
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em] ml-1">Maximum Offering</label>
               <select 
@@ -191,7 +191,7 @@ const App: React.FC = () => {
                 className="group flex flex-col cursor-pointer"
                 onClick={() => handleSelectProperty(property)}
               >
-                <div className="relative h-[550px] overflow-hidden bg-slate-100 shadow-2xl">
+                <div className="relative h-[450px] lg:h-[550px] overflow-hidden bg-slate-100 shadow-2xl">
                   <img 
                     src={property.imageUrl} 
                     alt={property.title} 
@@ -240,6 +240,9 @@ const App: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Contact & Inquiry Section */}
+      <ContactSection />
 
       <Footer />
 
